@@ -1,17 +1,26 @@
 import React from "react";
+import { useTheme } from "../themes/ThemeContext";
 
-export default function Button({ color = "#6200ea", onClick, children }) {
+export default function Button({ onClick, children }) {
+  const { theme } = useTheme();
+
+  const backgroundColor = theme.text;
+  const textColor = theme.background; 
+
   return (
     <button
+      onClick={onClick}
       style={{
-        backgroundColor: color,
-        color: "#fff",
+        background: backgroundColor,
+        color: textColor,
         border: "none",
         padding: "0.5rem 1rem",
-        borderRadius: "4px",
+        borderRadius: "6px",
         cursor: "pointer",
+        fontWeight: "bold",
+        marginTop: "1rem",
+        transition: "all 0.3s ease",
       }}
-      onClick={onClick}
     >
       {children}
     </button>
